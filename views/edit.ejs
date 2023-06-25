@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Quote</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .edit-quote-title {
+            background-color: red;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="edit-quote-title">Edit Quote</h2>
+        <form action="/update/<%= quote._id %>" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= quote.name %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" class="form-control" id="price" name="price" value="<%= quote.price %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control" id="image" name="image" required>
+                <% if (quote.image) { %>
+                    <input type="hidden" name="oldImage" value="<%= quote.image %>">
+                    <p>Current Image: <img src="/images/<%= quote.image %>" class="circle" style="width: 200px; height: 250px;"></p>
+                <% } %>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <input type="text" class="form-control" id="category" name="category" value="<%= quote.category %>" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Star Wars Quote App</title>
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper"> <a href="#" class="brand-logo">ATN Company</a> </div>
+    </nav>
+
+    <body>
+        <div class="container">
+            <!-- CREATE Task -->
+            <div class="row">
+                <form class="col s12" action="/quotes" method="POST">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="name" type="text" name="name" class="validate">
+                            <label for="name">Product Name</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="price" type="text" name="price" class="validate">
+                            <label for="price">Price</label>
+                        </div>
+                        <div class="input-field col s12" style="margin-bottom: 40px;">
+                            <label for="image">Image: <input id="image" type="file" name="image" class="validate"></label>
+                        </div>                        
+                        <div class="input-field col s12">
+                            <input id="category" type="text" name="category" class="validate">
+                            <label for="category">Category</label>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    </button>
+                </form>
+            </div>
+            <!-- READ Task -->
+            <h4>Product: TOY LIST</h4>
+            <ul class="collection">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product name</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Category</th>
+                            <th style="text-align: right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < quotes.length; i++) { %>
+                            <tr>
+                                <td>
+                                    <%= quotes[i].name %>
+                                </td>
+                                <td>
+                                    <%= quotes[i].price %>
+                                </td>
+                                <td><img src="/images/<%= quotes[i].image %>" class="circle" style="width: 200px; height: 250px;"></td>
+                                <td>
+                                    <%= quotes[i].category %>
+                                </td>
+                                <td>
+                                    <form action="/delete/<%= quotes[i]._id %>" method="POST" class="secondary-content" style="margin-left: 10px;">
+                                        <button class="btn btn-pen red" type="submit"><i
+                                            class="bi bi-trash-fill"></i></button>
+                                    </form>
+                                    <form action="/edit/<%= quotes[i]._id %>" method="GET" class="secondary-content">
+                                        <button class="btn btn-pen blue" type="submit"><i
+                                            class="bi bi-pencil-fill"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </ul>   
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+
+</html>
