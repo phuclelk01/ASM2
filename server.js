@@ -9,7 +9,7 @@ const mongodb = require('mongodb');
 
 const MongoClient = require('mongodb').MongoClient
 
-const connectionString = 'mongodb+srv://kimhoatu1996:123@cluster0.lrlftup.mongodb.net/'
+const connectionString = 'mongodb+srv://phucle:041203@cluster0.mgovzfe.mongodb.net/'
 
 //(0) CONNECT: server -> connect -> MongoDB Atlas 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
